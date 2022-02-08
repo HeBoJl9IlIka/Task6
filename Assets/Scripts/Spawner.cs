@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefabEnemy;
-    [SerializeField] private List<GameObject> _enemies;
+    [SerializeField] private Enemy _template;
+    [SerializeField] private List<Enemy> _enemies;
 
     private Point[] _points;
     private WaitForSeconds _pauseSpawn = new WaitForSeconds(2);
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
             int maxValue = _points.Length;
 
             int index = Random.Range(minValue, maxValue);
-            _enemies.Add(Instantiate(_prefabEnemy, _points[index].transform));
+            _enemies.Add(Instantiate(_template, _points[index].transform));
 
             yield return _pauseSpawn;
         }
